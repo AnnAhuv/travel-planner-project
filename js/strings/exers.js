@@ -22,7 +22,7 @@ console.log(TenLaTitle);
 
 function searchFlights(destinations, query) {
     const matchingDestinations = destinations.filter(destination =>
-      destination.toLowerCase().includes(query.toLowerCase())
+      destination.toLowerCase().includes(query.toLowerCase()) // CR - 💪🏻 great job!
     );
   
     return matchingDestinations;
@@ -40,7 +40,7 @@ function searchFlights(destinations, query) {
   // ex 3
 
   function formatFlightCode(flightCode) {
-    const parts = flightCode.split('-');
+    const parts = flightCode.split('-'); // CR - why not destructure?
   
     const formattedCode = `${parts[1]}-${parts[0]}`;
   
