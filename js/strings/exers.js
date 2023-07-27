@@ -32,7 +32,7 @@ function searchFlights(destinations, query) {
   const destinations = ["New York", "Tokyo", "Paris", "London"];
   const query = "on";
   const result = searchFlights(destinations, query);
-  console.log(result); // Output: ["London"]
+  console.log(result); 
 
   
   
