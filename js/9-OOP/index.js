@@ -97,27 +97,29 @@ class Trip {
   }
 
   setOrigin(name, description, dateOfDeparture) {
-    return (this.origin = new Origin());
+    return (this.origin = new Origin(name, description, dateOfDeparture));
   }
 
   addDestination() {
-    return (this.destinations = this.destinations.push(new Destination()));
+    this.destinations.push(new Destination());
   }
 
   addTransport(type, duration, cost, additionalData) {
     switch (type) {
       case "flight":
-        return (this.transports = this.transports.push(
+        this.transports.push(
           new Flight(duration, cost, additionalData)
-        ));
+        );
+        break;
       case "train":
-        return (this.transports = this.transports.push(
+        this.transports.push(
           new Train(duration, cost, additionalData)
-        ));
+        );
+        break;
       case "car":
-        return (this.transports = this.transports.push(
+        this.transports.push(
           new Car(duration, cost, additionalData)
-        ));
+        );
     }
   }
 
