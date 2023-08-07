@@ -8,4 +8,5 @@ class Location {
     addActivity(activity) {
       this.activities.push(activity);
     }
-}
+
+   }
