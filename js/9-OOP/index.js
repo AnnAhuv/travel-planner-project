@@ -4,7 +4,7 @@ class Location {
   constructor(name, description, activities = []) {
     this.name = name;
     this.description = description;
-    this.activities = [];
+    this.activities = []; // CR - should be: this.activities = activities; 
   }
 
   addActivity(activity) {
@@ -21,7 +21,7 @@ class Location {
   }
 
   displayLocation() {
-    return `${this.name} - ${this.description}. Activities: ${this.activities}.`;
+    return `${this.name} - ${this.description}. Activities: ${this.activities}.`; // CR it will not print the activities because it's an array. You should turn this to a string, like this: Activities: ${this.activities.join(', ')}
   }
 }
 
@@ -90,21 +90,62 @@ class Car extends Transport {
 // Exercise 5: The Trip class
 
 class Trip {
+  /*
+    CR - shuold be:
+    constructor() {
+      this.origin = null;
+      this.destinations = [];
+      this.transports = [];
+    }
+    because the properties are internal and are populated by the class methods.
+  */
   constructor(origin, destinations, transports) {
     this.origin = null;
     this.destinations = [];
     this.transports = [];
   }
 
+  /*
+    CR - wrong. should be:
+      setOrigin(name, description, dateOfDeparture) {
+        this.origin = new Origin(name, description, dateOfDeparture);
+      }
+  */
   setOrigin(name, description, dateOfDeparture) {
     return (this.origin = new Origin());
   }
 
+  /*
+    CR - wrong:
+       addDestination(name, description, dateOfArrival) {
+        const destination = new Destination(name, description, dateOfArrival);
+        this.destinations.push(destination);
+      }
+  */
   addDestination() {
     return (this.destinations = this.destinations.push(new Destination()));
   }
 
   addTransport(type, duration, cost, additionalData) {
+    /*
+      CR - wrong. This is the right implementation:
+        let transport;
+        switch (type) {
+          case 'flight':
+            transport = new Flight(type, duration, cost, additionalData);
+            break;
+          case 'train':
+            transport = new Train(type, duration, cost, additionalData);
+            break;
+          case 'car':
+            transport = new Car(type, duration, cost, additionalData.make, additionalData.model);
+            break;
+          default:
+            transport = new Transport(type, duration, cost);
+        }
+        this.transports.push(transport);
+      
+    */
     switch (type) {
       case "flight":
         return (this.transports = this.transports.push(
@@ -119,6 +160,7 @@ class Trip {
           new Car(duration, cost, additionalData)
         ));
     }
+    
   }
 
   displayTrip() {
