@@ -4,31 +4,33 @@ class Location {
   constructor(name, description, activities = []) {
     this.name = name;
     this.description = description;
-    this.activities = [];
+    this.activities = activities;
   }
 
   addActivity(activity) {
-    return this.activities.push(activity);
+    this.activities.push(activity);
   }
 
   removeActivity(activity) {
     let activityIndex = this.activities.indexOf(activity);
     if (activityIndex > -1) {
-      return this.activities.splice(activityIndex, 1);
+      this.activities.splice(activityIndex, 1);
     } else {
       return `${activity} is not in the list.`;
     }
   }
 
   displayLocation() {
-    return `${this.name} - ${this.description}. Activities: ${this.activities}.`;
+    return `${this.name} - ${
+      this.description
+    }. Activities: ${this.activities.join(", ")}.`;
   }
 }
 
 // Exercise 2: The Origin and Destination subclasses
 
 class Origin extends Location {
-  constructor(name, description, dateOfDeparture) {
+  constructor(name, description, dateOfDeparture, activities) {
     super(name, description, activities);
     this.dateOfDeparture = dateOfDeparture;
   }
@@ -51,11 +53,11 @@ class Transport {
   }
 
   changeDuration(newDuration) {
-    return (this.duration = newDuration);
+    this.duration = newDuration;
   }
 
   changeCost(newCost) {
-    return (this.cost = newCost);
+    this.cost = newCost;
   }
 
   displayTransport() {
@@ -90,40 +92,90 @@ class Car extends Transport {
 // Exercise 5: The Trip class
 
 class Trip {
-  constructor(origin, destinations, transports) {
+  constructor() {
     this.origin = null;
     this.destinations = [];
     this.transports = [];
   }
 
   setOrigin(name, description, dateOfDeparture) {
-    return (this.origin = new Origin(name, description, dateOfDeparture));
+    this.origin = new Origin(name, description, dateOfDeparture);
   }
 
-  addDestination() {
-    this.destinations.push(new Destination());
+  addDestination(name, description, dateOfArrival) {
+    const destination = new Destination(name, description, dateOfArrival);
+    this.destinations.push(destination);
   }
 
   addTransport(type, duration, cost, additionalData) {
+    let transport;
     switch (type) {
       case "flight":
-        this.transports.push(
-          new Flight(duration, cost, additionalData)
-        );
+        transport = new Flight(duration, cost, additionalData);
         break;
       case "train":
-        this.transports.push(
-          new Train(duration, cost, additionalData)
-        );
+        transport = new Train(duration, cost, additionalData);
         break;
       case "car":
-        this.transports.push(
-          new Car(duration, cost, additionalData)
-        );
+        transport = new Car(duration, cost, additionalData);
+      default:
+        transport = new Transport(type, duration, cost);
     }
+    this.transports.push(transport);
   }
 
-  displayTrip() {
-    return ``;
-  }
+  // displayTrip() {
+  //   return ``;
+  // }
 }
+//
+//
+//
+// Tests-------------------
+//
+//
+// Create a new trip
+console.log("Creating a new trip");
+const trip = new Trip();
+
+// Set the trip's origin
+console.log("Setting the trip's origin");
+trip.setOrigin("New York City", "The Big Apple", "2023-09-01");
+console.log(trip.origin.displayLocation());
+
+// Add some destinations
+console.log("Adding some destinations");
+trip.addDestination("London", "The capital city of England", "2023-09-02");
+trip.addDestination("Paris", "The city of love", "2023-09-05");
+for (let destination of trip.destinations) {
+  console.log(destination.displayLocation());
+}
+
+// Add some transports
+console.log("Adding some transports");
+trip.addTransport("flight", "7 hours", 500, "AB123");
+trip.addTransport("train", "2 hours", 100, "XYZ789");
+trip.addTransport("car", "1 hour", 50, { make: "Toyota", model: "Corolla" });
+for (let transport of trip.transports) {
+  console.log(transport.displayTransport());
+}
+
+// Change a transport's duration and cost
+console.log("Changing a transport's duration and cost");
+trip.transports[0].changeDuration("8 hours");
+trip.transports[0].changeCost(550);
+console.log(trip.transports[0].displayTransport());
+
+// Display the trip's details
+console.log("Displaying the trip's details");
+// console.log(trip.displayTrip());
+
+// Add an activity to a location
+console.log("Adding an activity to a location");
+trip.origin.addActivity("Sightseeing at Times Square");
+console.log(trip.origin.displayLocation());
+
+// Remove an activity from a location
+console.log("Removing an activity from a location");
+trip.origin.removeActivity("Sightseeing at Times Square");
+console.log(trip.origin.displayLocation());

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="users.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container"></div>
+
+    <script>
+      const div = document.querySelector(".container");
+      const olEl = document.createElement("ol");
+      olEl.style.listStyleType = "none";
+      div.appendChild(olEl);
+
+      users.forEach((el) => {
+        const liEl = document.createElement("li");
+        liEl.setAttribute("data-id", el.id);
+        liEl.textContent = el.firstName + " " + el.lastName;
+        olEl.append(liEl);
+        div.append(olEl);
+      });
+    </script>
+  </body>
+</html>
