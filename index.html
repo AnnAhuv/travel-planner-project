@@ -4,46 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travel Planner</title>
-     <link rel="stylesheet" href="/style.css">  
   </head>
   <body>
-      <div class="wrapper">
-          <div class="btn-area">
-              <label for="chkBox">Sign in</label>
-          </div>
-      </div>
       
-      <input type="checkbox" name="" id="chkBox">
-      <div class="mainContnt">
-          <div class="box">
-              
-              <div class="boxes bx2">
-                  <h3>Welcome back</h3>
-                  <div class="login-form">
-                      <input type="text" placeholder="Email..">
-                      <input type="password" placeholder="Password..">
-                      <input type="submit" value="Sign inn">
-                      <div class="forgotPass">
-                        <h5>forgot password?</h5>
-                      </div>
-                      <div class="signIn">
-                        <h3>Sign in</h3>
-                    </div>
-                    <div class="ntmmbr">
-                      <h5>Not a member?</h5>
-                    </div>
-                    <div class="joinUnlock">
-                      <h5>join to unlock the best of vamos</h5>
-                    </div>
-                    <div class="bySignin">
-                      <h6>By signing in or creating an account you agree with our Terms & conditions,<br> privacy statement and our cookie policy</h6>
-                    </div>
-                  </div>
-                  <div class="close-box">
-                      <label for="chkBox" class="box-close">X</label>
-                  </div>
-                 </div>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Travel Planner</title>
+        
+      </head>
+      <body>
+    
+        <div class="modal">
+          <div class="header">
+            <h1 class="site-name">Vamos</h1>
           </div>
-      </div>
+          <div class="content">
+            <p class="welcome-message">Welcome Back</p>
+            <div class="input-box email-box">
+              <input type="text" placeholder="Enter your email address">
+            </div>
+            <div class="input-box password-box">
+              <input type="password" placeholder="Enter your password">
+            </div>
+            <p class="forgot-password">Forgot password?</p>
+            <div class="sign-in-box">
+              <p>Sign In</p>
+            </div>
+            <p class="not-a-member">Not a member?</p>
+            <p class="join-text">
+              <span class="join-word">Join</span> to unlock the best out of Vamos
+            </p>
+            <p class="terms-text">
+              By signing in or creating an account you agree with our
+              <br />
+              <span class="highlighted-text">Terms & conditions, privacy statement and our cookie policy</span>
+            </p>
+          </div>
+        </div>
+        
+      </body>
+    </html>
+    
+
   </body>
   </html>
