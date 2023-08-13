@@ -52,6 +52,10 @@ body {
   padding: 2rem; /* 20px */
 }
 
+.content a {
+  color: #262626;
+}
+
 /* White box for all the content */
 .white-box {
   position: absolute;
@@ -142,6 +146,7 @@ body {
   line-height: normal;
   text-align: center;
   color: #fff;
+  font-family: "Mulish", sans-serif;
   background-color: var(--main-color);
   border-radius: 6rem;
   margin-bottom: 7rem;
