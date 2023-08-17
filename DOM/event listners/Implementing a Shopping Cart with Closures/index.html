@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <style>
+    /* ... (same as provided in the question) ... */
+  </style>
+</head>
+
+<body>
+  <div class="products">
+    <div class="product" data-id="1">
+      <h3>Product 1</h3>
+      <button>Add to Cart</button>
+    </div>
+    <div class="product" data-id="2">
+      <h3>Product 2</h3>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+  <div class="cart">
+    <h2>Shopping Cart</h2>
+    <div class="cart-items"></div>
+  </div>
+
+  <script>
+    // Initialize the cart object to store product IDs and quantities
+    const cart = {};
+
+    // Function to add a product to the cart
+    function addProductToCart(productId) {
+      return function () {
+        if (cart[productId]) {
+          cart[productId] += 1; // Increment quantity if product exists
+        } else {
+          cart[productId] = 1; // Add new entry with quantity 1
+        }
+        updateCart();
+      };
+    }
+
+    // Function to update the cart display
+    function updateCart() {
+      const cartItemsDiv = document.querySelector('.cart-items');
+      cartItemsDiv.innerHTML = ''; // Clear previous entries
+
+      for (const [productId, quantity] of Object.entries(cart)) {
+        const cartItemDiv = document.createElement('div');
+        cartItemDiv.className = 'cart-item';
+        cartItemDiv.innerHTML = `Product ${productId}: Quantity ${quantity}`;
+        cartItemsDiv.appendChild(cartItemDiv);
+      }
+    }
+
+    // Attach event listeners to "Add to Cart" buttons using closures
+    const products = document.querySelectorAll('.product');
+    products.forEach((product) => {
+      const productId = product.getAttribute('data-id');
+      const addButton = product.querySelector('button');
+      addButton.addEventListener('click', addProductToCart(productId));
+    });
+  </script>
+</body>
+
+</html>
