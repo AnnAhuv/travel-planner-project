@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 2px solid #333;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .draggable {
+      width: 50px;
+      height: 50px;
+      background-color: #007bff;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  </style>
+  <title>Drag and Drop Interface</title>
+</head>
+
+<body>
+  <div class="container">
+    <div id="sourceBox" class="box">
+      <div class="draggable" draggable="true" id="item">Item</div>
+    </div>
+    <div id="targetBox" class="box"></div>
+  </div>
+
+  <script>
+    const draggableItem = document.getElementById('item');
+    const sourceBox = document.getElementById('sourceBox');
+    const targetBox = document.getElementById('targetBox');
+
+    draggableItem.addEventListener('dragstart', (event) => {
+      event.dataTransfer.setData('text/plain', draggableItem.id);
+    });
+
+    sourceBox.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    });
+
+    sourceBox.addEventListener('drop', (event) => {
+      event.preventDefault();
+      const itemId = event.dataTransfer.getData('text/plain');
+      const item = document.getElementById(itemId);
+
+      if (item && event.target === sourceBox) {
+        sourceBox.appendChild(item);
+      }
+    });
+
+    targetBox.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    });
+
+    targetBox.addEventListener('drop', (event) => {
+      event.preventDefault();
+      const itemId = event.dataTransfer.getData('text/plain');
+      const item = document.getElementById(itemId);
+
+      if (item && event.target === targetBox) {
+        targetBox.appendChild(item);
+      }
+    });
+  </script>
+</body>
+
+</html>
