@@ -91,10 +91,8 @@
           const selectedCategory = event.target.getAttribute('data-category');
           const selectedItems = data[selectedCategory];
 
-          // Clear existing items
           itemsContainer.innerHTML = '';
 
-          // Create and append new item elements
           selectedItems.forEach(item => {
             const itemElement = document.createElement('div');
             itemElement.classList.add('item');
