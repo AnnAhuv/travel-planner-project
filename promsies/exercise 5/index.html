@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Indicator with JSONPlaceholder</title>
+    <script src="/promsies/exercise 5/script.js"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -57,42 +59,6 @@
         <div id="loading-indicator">Loading...</div>
         <div class="section" id="users"></div>
     </div>
-
-    <script>
-        const usersURL = 'https://jsonplaceholder.typicode.com/users';
-
-        const usersContainer = document.getElementById('users');
-        const loadingIndicator = document.getElementById('loading-indicator');
-
-        // Display loading indicator
-        loadingIndicator.style.display = 'block';
-
-        // Fetch users data
-        fetch(usersURL)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch users');
-                }
-                return response.json();
-            })
-            .then(users => {
-                // Hide loading indicator
-                loadingIndicator.style.display = 'none';
-
-                // Process and display users
-                users.forEach(user => {
-                    const userDiv = document.createElement('div');
-                    userDiv.classList.add('item');
-                    userDiv.innerHTML = `<strong>${user.name}</strong><br>${user.email}`;
-                    usersContainer.appendChild(userDiv);
-                });
-            })
-            .catch(error => {
-                // Hide loading indicator and display error
-                loadingIndicator.style.display = 'none';
-                usersContainer.textContent = `An error occurred: ${error.message}. Please try again later.`;
-            });
-    </script>
 </body>
 
 </html>
