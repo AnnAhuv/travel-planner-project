@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create and Handle a Simple Promise with Resolution and Rejection</title>
+  <title>Create a Simple Promise with Rejection</title>
+  <script src="/promsies/Exercise 1/script.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -52,9 +55,10 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <h1>Create and Handle a Simple Promise with Resolution and Rejection</h1>
+    <h1>Create a Simple Promise with Rejection</h1>
     <label>
       <input type="checkbox" id="triggerRejection">
       Trigger Rejection
@@ -62,32 +66,6 @@
     <div class="message" id="message"></div>
     <button id="triggerPromise">Trigger Promise</button>
   </div>
-  <script>
-    const triggerRejectionCheckbox = document.getElementById('triggerRejection');
-    const triggerPromiseButton = document.getElementById('triggerPromise');
-    const messageElement = document.getElementById('message');
-
-    triggerPromiseButton.addEventListener('click', () => {
-      const promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (triggerRejectionCheckbox.checked) {
-            reject('The Promise has been rejected!');
-          } else {
-            resolve('The Promise has been resolved!');
-          }
-        }, 1000);
-      });
-
-      promise.then(message => {
-        messageElement.textContent = message;
-        messageElement.classList.add('resolved');
-        messageElement.classList.remove('rejected');
-      }).catch(error => {
-        messageElement.textContent = error;
-        messageElement.classList.add('rejected');
-        messageElement.classList.remove('resolved');
-      });
-    });
-  </script>
 </body>
+
 </html>

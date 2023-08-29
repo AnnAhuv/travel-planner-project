@@ -1,4 +1,3 @@
-// Define the Movie class
 class Movie {
     constructor(title, releaseDate, picture, rating) {
       this.title = title;
@@ -28,22 +27,18 @@ class Movie {
     }
   }
   
-  // Create a function to get HTTP options
   const getHttpOptions = () => ({
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer your-bearer-token-here'
+      Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZmY0ZmUyYWRmZDMyMDE1OTRmZDBmOTRkZjJkMDc4MSIsInN1YiI6IjY0ZWNjMTE3ODM5MDE4MDBlNWQxMjlmMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EnJT1aacv3npF3qYVvxsOzIZ8od9uEcXIzlAvH_3pQo'
     }
   });
   
-  // Set up API constants
   const API_BASE_URL = 'https://api.themoviedb.org/3/';
   
-  // Create a function to get a movie image URL
   const getImage = (imgPath, size) => `https://image.tmdb.org/t/p/${size}${imgPath}`;
   
-  // Create a function to fetch movies
   const fetchMovies = () => {
     const moviesList = document.querySelector('.movies-list');
   
@@ -54,7 +49,7 @@ class Movie {
           const movie = new Movie(
             item.title,
             item.release_date,
-            getImage(item.poster_path, 'w500'), // Change the image size as needed
+            getImage(item.poster_path, 'w500'), // Change the image size 
             item.vote_average
           );
           createMovieCard(movie);
@@ -67,13 +62,11 @@ class Movie {
       });
   };
   
-  // Create a function to update item count
   const updateItemCount = count => {
     const itemCount = document.querySelector('.sort-bar p');
     itemCount.textContent = `${count} items`;
   };
   
-  // Create a function to create movie cards
   const createMovieCard = movie => {
     const moviesList = document.querySelector('.movies-list');
   
@@ -100,7 +93,6 @@ class Movie {
     moviesList.appendChild(movieElement);
   };
   
-  // Create a function to display error messages
   const createErrorMessage = message => {
     const moviesList = document.querySelector('.movies-list');
   
@@ -111,6 +103,5 @@ class Movie {
     moviesList.appendChild(errorMessage);
   };
   
-  // Call the fetchMovies function to start fetching movies
   fetchMovies();
   
